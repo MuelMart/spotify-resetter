@@ -25,5 +25,5 @@ jobs:
           client_id: ${{ secrets.CLIENT_ID }}
           client_secret: ${{ secrets.CLIENT_SECRET }}
           refresh_token: ${{ secrets.REFRESH_TOKEN }}
-        run: python resetter.py -cid client_id -cs client_secret -ruri http://localhost:8000 -pid 2qWJUgPe7N7Ze0EnLfwVw9 -rt refresh_token
+        run: python resetter.py -cid ${client_id} -cs ${client_secret} -ruri http://localhost:8000 -pid 2qWJUgPe7N7Ze0EnLfwVw9 -rt ${refresh_token}
         working-directory: app

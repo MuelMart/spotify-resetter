@@ -1,4 +1,7 @@
 name: reset-playlist
+defaults:
+  run:
+    working-directory: app
 on:
   workflow_dispatch
   #schedule:
@@ -16,8 +19,6 @@ jobs:
           python-version: '3.12.4'
 
       - name: install packages
-        run: |
-          cd ./app
           python -m pip install --upgrade pip
           pip install spotipy --upgrade
 

@@ -1,1 +1,27 @@
 name: reset-playlist
+on: 
+  schedule:
+    - cron: "0 0 * * 1"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: build python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12.4'
+
+      - name: install packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install spotipy --upgrade
+
+      - name: run script
+        env:
+          client_id: ${{ secrets.CLIENT_ID }}
+          client_secret: ${{ secrets.CLIENT_SECRET }}
+          refresh_token: ${{ secrets.REFRESH_TOKEN }}
+        run: python resetter.py -cid client_id -cs client_secret -ruri http://localhost:8000 -pid 2qWJUgPe7N7Ze0EnLfwVw9 -rt refresh_token
